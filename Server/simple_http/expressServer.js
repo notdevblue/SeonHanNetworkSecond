@@ -2,8 +2,11 @@ const express = require('express');
 const fs = require('fs/promises');
 const http = require('http');
 const path = require('path');
+const { pool, insertData } = require("./DB.js");
 
 const app = express();
+
+app.use(express.json()); // 요청을 json 으로 변환해주는 역할을 해준다.
 
 //app 이 바로 요청이 왔을 때 응답을 해주는 함수야
 const server = http.createServer(app);
@@ -39,6 +42,17 @@ app.get("/thumb", async (req, res) => {
 
     res.sendFile(filePath);
 });
+
+app.post("/postdata", async (req, res) => {
+    //console.log(req.body); // 안 됨 => 미들웨어가 필요함, post 로 보내면 body 에 data가 들어감
+    let { name, msg, score } = req.body;
+    
+    const result = await insertData(name, msg, score);
+
+    res.json({ msg: result ? "입력 성공" : "입력 실패" });
+
+});
+
 
 server.listen(54000, ()=>{
     console.log("서버가 54000번 포트에서 구동중입니다.");
