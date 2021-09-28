@@ -49,9 +49,18 @@ app.post("/postdata", async (req, res) => {
     
     const result = await insertData(name, msg, score);
 
-    res.json({ msg: result ? "입력 성공" : "입력 실패" });
+    res.json({ msg: result ? true : false, list, count: list.length });
 
 });
+
+app.get("/list", async (req, res) => {
+    let sql = "SELECT * FROM high_scores ORDER BY score DESC LIMIT 0, 5"; // 최대 5개 가져옴 (MySQL => LIMIT)
+    // 시작 인덱스 => 갯수
+    let [list] = await pool.query(sql);
+    
+    res.json({ list });
+});
+
 
 
 server.listen(54000, ()=>{

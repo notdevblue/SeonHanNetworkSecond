@@ -36,16 +36,23 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets/01.Scripts/PostData.cs" />
+     <Compile Include="Assets/01.Scripts/Manager/NetworkManager.cs" />
      <Compile Include="Assets/01.Scripts/VO/HobbyVO.cs" />
      <Compile Include="Assets/01.Scripts/RecordRequest.cs" />
      <Compile Include="Assets/01.Scripts/LoadImageList.cs" />
      <Compile Include="Assets/01.Scripts/ListItem.cs" />
      <Compile Include="Assets/01.Scripts/SimpleImageGet.cs" />
      <Compile Include="Assets/01.Scripts/SimpleGet.cs" />
+     <Compile Include="Assets/01.Scripts/UI/RankListRefresh.cs" />
+     <Compile Include="Assets/01.Scripts/VO/RecordListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/RecordVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/ImageListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/HelloVO.cs" />
-     <Compile Include="Assets/01.Scripts/PostData.cs" />
+     <Compile Include="Assets/01.Scripts/UI/RankItem.cs" />
+     <Compile Include="Assets/01.Scripts/UI/Popup.cs" />
+     <Compile Include="Assets/01.Scripts/UI/RegisterPopup.cs" />
+     <Compile Include="Assets/01.Scripts/VO/RegisterVO.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/han/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

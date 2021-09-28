@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Text;
 using System.Web;
 using UnityEngine;
 
+[Serializable]
 public class RecordVO
 {
     public string name;
-    public string msg;  //32ºñÆ®  CPU±âÁØÀ¸·Î 4¹ÙÀÌÆ®¸¦ 64ºñÆ®·Î 8¹ÙÀÌÆ®¸£
+    public string msg;  //32ï¿½ï¿½Æ®  CPUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 64ï¿½ï¿½Æ®ï¿½ï¿½ 8ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
     public int score;
 
     public RecordVO(string name, string msg, string score)
