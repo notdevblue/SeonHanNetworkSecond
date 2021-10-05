@@ -16,6 +16,9 @@ public class RankListRefresh : MonoBehaviour
         });  
     }
 
+
+    bool next = false;
+
     private void ListGenerate(string json)
     {
         RecordListVO vo = JsonUtility.FromJson<RecordListVO>(json);
@@ -27,9 +30,11 @@ public class RankListRefresh : MonoBehaviour
 
         for (int i = 0; i < vo.list.Count; ++i)
         {
+
             RankItem ri = Instantiate(rankItemPrefab, contentView);
             ri.SetData(i + 1, vo.list[i]);
+            ri.SetAnimation(i * 0.4f + 0.1f);
         }
-
     }
+
 }

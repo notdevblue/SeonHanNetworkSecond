@@ -40,19 +40,20 @@
      <Compile Include="Assets/01.Scripts/Manager/NetworkManager.cs" />
      <Compile Include="Assets/01.Scripts/VO/HobbyVO.cs" />
      <Compile Include="Assets/01.Scripts/RecordRequest.cs" />
+     <Compile Include="Assets/01.Scripts/UI/Popup.cs" />
      <Compile Include="Assets/01.Scripts/LoadImageList.cs" />
      <Compile Include="Assets/01.Scripts/ListItem.cs" />
      <Compile Include="Assets/01.Scripts/SimpleImageGet.cs" />
      <Compile Include="Assets/01.Scripts/SimpleGet.cs" />
      <Compile Include="Assets/01.Scripts/UI/RankListRefresh.cs" />
+     <Compile Include="Assets/01.Scripts/VO/RegisterVO.cs" />
+     <Compile Include="Assets/01.Scripts/UI/RegisterPopup.cs" />
      <Compile Include="Assets/01.Scripts/VO/RecordListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/RecordVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/ImageListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/HelloVO.cs" />
      <Compile Include="Assets/01.Scripts/UI/RankItem.cs" />
-     <Compile Include="Assets/01.Scripts/UI/Popup.cs" />
-     <Compile Include="Assets/01.Scripts/UI/RegisterPopup.cs" />
-     <Compile Include="Assets/01.Scripts/VO/RegisterVO.cs" />
+     <Compile Include="Assets/01.Scripts/Manager/PopupManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/han/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -271,6 +272,9 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>/home/han/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+        <HintPath>/home/han/Documents/AfterSchool/SeonHanNetworkSecond/SimpleClient/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>/home/han/Unity/Hub/Editor/2020.3.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -619,6 +623,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{fc5c51e0-05ff-2b10-1a66-93ee5a33de43}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Editor.csproj">
       <Project>{57f6c4df-3e76-48fc-c2f6-a492bb8abf1e}</Project>
       <Name>Unity.2D.Animation.Editor</Name>

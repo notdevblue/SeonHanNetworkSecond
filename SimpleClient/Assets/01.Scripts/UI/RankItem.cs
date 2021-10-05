@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RankItem : MonoBehaviour
 {
@@ -16,5 +17,13 @@ public class RankItem : MonoBehaviour
         nameText.text = vo.name;
         scoreText.text = vo.score.ToString();
         msgText.text = vo.msg;
+    }
+
+    public void SetAnimation(float delay)
+    {
+        transform.localScale = new Vector3(1, 0, 1);
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(delay);
+        seq.Append(transform.DOScaleY(1, 0.4f).SetEase(Ease.InOutQuart));
     }
 }

@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 216902159}
   - component: {fileID: 216902161}
   - component: {fileID: 216902160}
+  - component: {fileID: 216902162}
   m_Layer: 5
   m_Name: pannelFader
   m_TagString: Untagged
@@ -517,6 +518,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216902158}
   m_CullTransparentMesh: 1
+--- !u!225 &216902162
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216902158}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &322339408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097082506}
   - component: {fileID: 1097082505}
+  - component: {fileID: 1097082507}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2067,6 +2081,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1097082507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097082504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3c753e367dd34f8b0230c63b348f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registerPopupBtn: {fileID: 926273328}
+  popupParent: {fileID: 216902159}
+  registerPopupPrefab: {fileID: 7174018506750405520, guid: 06c6d335228c9e6aa8cdf3b95dad073a, type: 3}
 --- !u!1 &1151998935
 GameObject:
   m_ObjectHideFlags: 0

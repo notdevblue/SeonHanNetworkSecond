@@ -121,8 +121,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5580408182627595306}
   m_TextComponent: {fileID: 5580408183597148350}
   m_Placeholder: {fileID: 5580408183510640722}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: 5580408183575809459}
   - component: {fileID: 5580408183575809460}
   - component: {fileID: 5580408183575809458}
+  - component: {fileID: 7174018506750405520}
   m_Layer: 5
   m_Name: RegisterWindow
   m_TagString: Untagged
@@ -1038,6 +1039,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7174018506750405520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580408183575809462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413220e749820f53990289ce8c5a7787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registerBtn: {fileID: 5580408183477850169}
+  closeBtn: {fileID: 5580408184633418528}
+  nameInput: {fileID: 5580408182989915437}
+  idInput: {fileID: 5580408183851370172}
+  passInput: {fileID: 5580408183620310012}
+  passConfirmInput: {fileID: 5580408182627595307}
 --- !u!1 &5580408183597148336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,8 +1257,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5580408183620310011}
   m_TextComponent: {fileID: 5580408183512522661}
   m_Placeholder: {fileID: 5580408183481807292}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
