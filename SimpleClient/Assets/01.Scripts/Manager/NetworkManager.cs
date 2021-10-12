@@ -9,6 +9,13 @@ public class NetworkManager : MonoBehaviour
 
     public string baseUrl = "http://localhost:54000";
 
+    private string token = "";
+
+    public void SetToken(string token)
+    {
+        this.token = token;
+    }
+
     private void Awake()
     {
         if(instance != null)
@@ -16,6 +23,7 @@ public class NetworkManager : MonoBehaviour
             Debug.LogError("There are more than one NetworkManager running at same scene");
         }
         instance = this;
+        token = PlayerPrefs.GetString("token"); // 없으면 null
     }
 
     public void SendGetRequest(string url, string querystring, System.Action<string> callback)
@@ -31,6 +39,8 @@ public class NetworkManager : MonoBehaviour
     IEnumerator SendGet(string url, System.Action<string> callback)
     {
         UnityWebRequest req = UnityWebRequest.Get(url);
+
+        req.SetRequestHeader("Authorization", "Bearer " + token);
 
         yield return req.SendWebRequest();
 

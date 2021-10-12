@@ -7,11 +7,14 @@ using DG.Tweening;
 public class PopupManager : MonoBehaviour
 {
     public Button registerPopupBtn;
+    public Button loginPopupBtn;
     public Transform popupParent;
     
     private CanvasGroup popupCanvasGroup;
 
     public RegisterPopup registerPopupPrefab;
+    public AlertPopup alertPopupPrefab;
+    public LoginPopup loginPopupPrefab;
 
     private Dictionary<string, Popup> popupDict = new Dictionary<string, Popup>();
     private Stack<Popup> popupStack = new Stack<Popup>();
@@ -40,10 +43,14 @@ public class PopupManager : MonoBehaviour
         popupCanvasGroup.blocksRaycasts = false;
 
         popupDict.Add("register", Instantiate(registerPopupPrefab, popupParent));
+        popupDict.Add("login", Instantiate(loginPopupPrefab, popupParent));
+        popupDict.Add("alert", Instantiate(alertPopupPrefab, popupParent));
+
         registerPopupBtn.onClick.AddListener(() => OpenPopUp("register"));
+        loginPopupBtn.onClick.AddListener(() => OpenPopUp("login"));
     }
 
-    public void OpenPopUp(string name)
+    public void OpenPopUp(string name, object data = null, int closeCount = 1)
     {
         if(popupStack.Count == 0)
         {
@@ -56,7 +63,7 @@ public class PopupManager : MonoBehaviour
             // 목표 값
             // duration
             popupStack.Push(popupDict[name]);
-            popupDict[name].Open();
+            popupDict[name].Open(data, closeCount);
         }
     }
 

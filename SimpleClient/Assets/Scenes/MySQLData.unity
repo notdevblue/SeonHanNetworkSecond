@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 216902160}
   - component: {fileID: 216902162}
   m_Layer: 5
-  m_Name: pannelFader
+  m_Name: OuterPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,8 +526,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216902158}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
+  m_Alpha: 1
+  m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &322339408
@@ -2094,8 +2094,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   registerPopupBtn: {fileID: 926273328}
+  loginPopupBtn: {fileID: 583858415}
   popupParent: {fileID: 216902159}
   registerPopupPrefab: {fileID: 7174018506750405520, guid: 06c6d335228c9e6aa8cdf3b95dad073a, type: 3}
+  alertPopupPrefab: {fileID: 6395332645316830169, guid: e8eddac9c0c15bfc79abb298f5e0b98d, type: 3}
+  loginPopupPrefab: {fileID: 8544311151513809160, guid: 7cfdbdd694cd5104abc2ffeaec76e67f, type: 3}
 --- !u!1 &1151998935
 GameObject:
   m_ObjectHideFlags: 0

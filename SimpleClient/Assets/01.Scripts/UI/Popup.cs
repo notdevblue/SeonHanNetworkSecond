@@ -19,7 +19,7 @@ abstract public class Popup : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
     }
 
-    public virtual void Open()
+    public virtual void Open(object data, int closeCount = 1)
     {
         canvasGroup.interactable = true;
         canvasGroup.alpha = 1;

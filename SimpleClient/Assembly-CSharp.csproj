@@ -50,10 +50,14 @@
      <Compile Include="Assets/01.Scripts/UI/RegisterPopup.cs" />
      <Compile Include="Assets/01.Scripts/VO/RecordListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/RecordVO.cs" />
+     <Compile Include="Assets/01.Scripts/Manager/PopupManager.cs" />
      <Compile Include="Assets/01.Scripts/VO/ImageListVO.cs" />
      <Compile Include="Assets/01.Scripts/VO/HelloVO.cs" />
      <Compile Include="Assets/01.Scripts/UI/RankItem.cs" />
-     <Compile Include="Assets/01.Scripts/Manager/PopupManager.cs" />
+     <Compile Include="Assets/01.Scripts/UI/AlertPopup.cs" />
+     <Compile Include="Assets/01.Scripts/VO/ResponseVO.cs" />
+     <Compile Include="Assets/01.Scripts/UI/LoginPopup.cs" />
+     <Compile Include="Assets/01.Scripts/VO/LoginVO.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/han/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

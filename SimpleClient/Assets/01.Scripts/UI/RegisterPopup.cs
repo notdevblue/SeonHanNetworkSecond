@@ -19,33 +19,26 @@ public class RegisterPopup : Popup
         base.Awake();
         registerBtn.onClick.AddListener(() => {
 
-            Regex reg = new Regex(@"^[a-zA-Z]{4,10}$"); // a ~ z, A ~ Z 만, 2 ~ 3 글짜만
-            if(reg.IsMatch(nameInput.text))
+            Regex reg = new Regex(@"^[a-zA-Z]{2,3}$"); // a ~ z, A ~ Z 만, 2 ~ 3 글짜만
+            if(!reg.IsMatch(nameInput.text))
             {
                 Debug.Log("이름은 반드시 영문 2 ~ 3 글자여야 합니다.");
-            }
-
-            reg = new Regex(@"^[ ]$");
-            if(reg.IsMatch(passInput.text))
-            {
-                Debug.Log("비밀번호에 공백을 포함할 수 없습니다.");
-            }
-
-            if(nameInput.text.Trim().Length == 0 || idInput.text.Trim().Length == 0 || passInput.text.Trim().Length == 0)
-            {
-                Debug.LogError("모조리 입력해야 함");
-            }
-            else if(passInput != passConfirmInput)
-            {
-                Debug.LogError("비번이 서로 같지 않음");
+                PopupManager.instance.OpenPopUp("alert", "이름은 반드시 영문 2 ~ 3글자여야합니다.");
+                return;
             }
             else
             {
                 RegisterVO vo = new RegisterVO(nameInput.text, idInput.text, passInput.text);
+                string json = JsonUtility.ToJson(vo);
 
-                NetworkManager.instance.SendPostRequest("register", JsonUtility.ToJson(vo), res =>
+                NetworkManager.instance.SendPostRequest("register", json, res =>
                 {
-                    Debug.Log(res);
+                    ResponseVO vo = JsonUtility.FromJson<ResponseVO>(res);
+
+                    Debug.Log(vo.result);
+                    Debug.Log(vo.payload);
+
+                    PopupManager.instance.OpenPopUp("alert", vo.result ? "성공적으로 회원가입됬습니다." : "성공적으로 회원가입되지 않았습니다.", vo.result ? 2 : 1);
                 });
             }
 
