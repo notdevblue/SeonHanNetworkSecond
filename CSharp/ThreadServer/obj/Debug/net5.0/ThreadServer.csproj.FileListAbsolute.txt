@@ -1,0 +1,16 @@
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer.deps.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer.runtimeconfig.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer.runtimeconfig.dev.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ref/ThreadServer.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ThreadServer.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.csprojAssemblyReference.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.GeneratedMSBuildEditorConfig.editorconfig
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.AssemblyInfoInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.AssemblyInfo.cs
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.csproj.CoreCompileInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ref/ThreadServer.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.genruntimeconfig.cache
