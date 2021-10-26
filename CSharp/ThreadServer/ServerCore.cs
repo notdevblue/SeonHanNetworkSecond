@@ -6,73 +6,213 @@ namespace ThreadServer
 {
     class Program
     {
+        #region Class
 
+        // class Lock
+        // {
+        //     // AutoResetEvent _available = new AutoResetEvent(true); // 느림, 하지만 매우 안전
+        //     // 누구나 들어올 수 있는 상태, false면 들어올 수 없는 상태
 
-        static int x = 0;
-        static int y = 0;
-        static int r1 = 0;
-        static int r2 = 0;
+        //     // ManualResetEvent _available = new ManualResetEvent(true); // 문이 자동으로 안 닫힘
+
+        //     public void Acquire()
+        //     {
+        //         // _available.WaitOne(); // 한명이 들어가면 문을 닫음 => false 로 전환
+        //         // // 문이 자동으로 닫히기 때문에 한명만 들어감
+        //         // // 원자성 보장받음
+        //         // _available.Reset(); // 원자성 보장이 안 됨
+
+        //     }
+
+        //     public void Release()
+        //     {
+        //         // _available.Set();
+        //     }
+        // }
+
+        // class SpinLock // 열릴때까지 while 돌리기 때문
+        // {
+        //     int _locked = 0;
+
+        //     public void Acquire()
+        //     {
+        //         while (true)
+        //         {
+        //             // int original = Interlocked.Exchange(ref _locked, 1);
+        //             // lock 에다가 1을 넣으려고 시도 함
+        //             // 이전 값을 리턴
+        //             // 이는 원자성 보장받음
+
+        //             int expected = 0; // 내가 예상한 값
+        //             int desired = 1; // 바꾸기 원하는 값
+
+        //             if(Interlocked.CompareExchange(ref _locked, desired, expected) == expected)
+        //             // locked 에 값이 0 이라면 1을 넣음
+        //             // 아니면 아무것도 안함
+        //             // 결과는 같음
+        //             {
+        //                 break;
+        //             }
+        //             Thread.Yield();
+
+        //         }
+        //         _locked = 1;
+        //     }
+
+        //     public void Release()
+        //     {
+        //         _locked = 0;
+        //     }
+        // }
+
+        // static SpinLock _lock = new SpinLock();
+        // static Lock _lock = new Lock();
+
+        #endregion
+
+        // POSIX 시대 => 뮤텍스와 세마포
+
+        // static Mutex _lock = new Mutex(); // Auto reset event 다르게 구현한 것
+        static SpinLock _lock = new SpinLock();
 
         static int number = 0;
 
         static void Thread_1()
         {
-            // y = 1;
-            // Thread.MemoryBarrier(); // 임계 영역 유발하는 공간을 막음
-            // r1 = x;
-
-            for (int i = 0; i < 10000; ++i)
+            for (int i = 0; i < 100000; ++i)
             {
+                // _lock.WaitOne();
                 // ++number;
-                
-                // System.Console.WriteLine(number);
-                int next = Interlocked.Increment(ref number); // 값 반환함
-                // System.Console.WriteLine(next); // 반드시 하나 증가된 값이 나옴
+                // _lock.ReleaseMutex();
 
+                bool lockTaken = false;
+                try
+                {
+                    _lock.Enter(ref lockTaken);
 
-                // 인터락 연산은 아토믹 실행을 반드시 보장함
+                    // 여기에 하고 싶은 것을 쓰면 된다.
+                }
+                finally
+                {
+                    if(lockTaken)
+                    {
+                        _lock.Exit();
+                    }
+                }
             }
         }
 
         static void Thread_2()
         {
-            // x = 1;
-            // Thread.MemoryBarrier(); // 임계 영역 유발하는 공간을 막음
-            // r2 = y;
-
-            for (int i = 0; i < 10000; ++i)
+            for (int i = 0; i < 100000; ++i)
             {
+                // _lock.WaitOne();
                 // --number;
-                Interlocked.Decrement(ref number);
-                // 인터락 연산은 아토믹 실행을 반드시 보장함
+                // _lock.ReleaseMutex();
             }
         }
 
-
         static void Main(string[] args)
         {
-            // int count = 0;
+            System.Console.WriteLine("Auto Reset Event");
 
-            // while (true)
-            // {
-            //     ++count;
-                // x = y = r1 = r2 = 0;
-                Task t1 = new Task(Thread_1);
-                Task t2 = new Task(Thread_2);
+            Task t1 = new Task(Thread_1);
+            Task t2 = new Task(Thread_2);
+            
+            t1.Start();
+            t2.Start();
 
-                t1.Start();
-                t2.Start();
+            Task.WaitAll(t1, t2);
 
-                Task.WaitAll(t1, t2);
+            System.Console.WriteLine(number);
 
-                // if(r1 == 0 && r2 == 0)
-                // {
-                //     break;
-                // }
-            // }
-
-            System.Console.WriteLine($"Exit!! : {number}");
+            Thread.Sleep(1); // 밀리세컨트 휴식, 1ms 정도 운영체제가 판단해서 재움, 반드시 1ms 보장받지 않음
+            Thread.Sleep(0); // 조건부 양보, 나보다 우선순위가 높은 스레드가 있다면 양보, 없으면 양보 X
+            Thread.Yield();  // 무조건 양보 (들어오려고 하는 사람이 있다면 양보). 실행가능한 스레드가 있다면 양보, 그렇지 않다면 자신이
         }
+
+
+        // static int x = 0;
+        // static int y = 0;
+        // static int r1 = 0;
+        // static int r2 = 0;
+
+        // static int number = 0;
+        // static object _obj = new object();
+
+        // static void Thread_1()
+        // {
+        //     // y = 1;
+        //     // Thread.MemoryBarrier(); // 임계 영역 유발하는 공간을 막음
+        //     // r1 = x;
+
+        //     for (int i = 0; i < 10000; ++i)
+        //     {
+        //         // Monitor.Enter(_obj);
+        //         // ++number;
+        //         // Monitor.Exit(_obj);
+
+        //         lock(_obj) // 위와 같음
+        //         {
+        //             ++number;
+        //         }
+
+
+        //         // System.Console.WriteLine(number);
+        //         // int next = Interlocked.Increment(ref number); // 값 반환함
+        //         // System.Console.WriteLine(next); // 반드시 하나 증가된 값이 나옴
+        //         // 인터락 연산은 아토믹 실행을 반드시 보장함
+
+
+        //     }
+        // }
+
+        // static void Thread_2()
+        // {
+        //     // x = 1;
+        //     // Thread.MemoryBarrier(); // 임계 영역 유발하는 공간을 막음
+        //     // r2 = y;
+
+        //     for (int i = 0; i < 10000; ++i)
+        //     {
+        //         // Monitor.Enter(_obj);
+        //         // --number;
+        //         // Monitor.Exit(_obj);
+        //         // Interlocked.Decrement(ref number);
+        //         // 인터락 연산은 아토믹 실행을 반드시 보장함
+
+        //         lock(_obj)
+        //         {
+        //             --number;
+        //         }
+        //     }
+        // }
+
+
+        // static void Main(string[] args)
+        // {
+        //     // int count = 0;
+
+        //     // while (true)
+        //     // {
+        //     //     ++count;
+        //         // x = y = r1 = r2 = 0;
+        //         // Task t1 = new Task(Thread_1);
+        //         // Task t2 = new Task(Thread_2);
+
+        //         // t1.Start();
+        //         // t2.Start();
+
+        //         // Task.WaitAll(t1, t2);
+
+        //         // if(r1 == 0 && r2 == 0)
+        //         // {
+        //         //     break;
+        //         // }
+        //     // }
+
+        //     // System.Console.WriteLine($"Exit!! : {number}");
+        // }
 
 
 
