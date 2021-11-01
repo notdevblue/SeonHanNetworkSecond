@@ -1,0 +1,16 @@
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client.deps.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client.runtimeconfig.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client.runtimeconfig.dev.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/ref/Client.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/Client.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.csprojAssemblyReference.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.GeneratedMSBuildEditorConfig.editorconfig
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.AssemblyInfoInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.AssemblyInfo.cs
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.csproj.CoreCompileInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/ref/Client.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.genruntimeconfig.cache
