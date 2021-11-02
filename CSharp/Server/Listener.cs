@@ -1,67 +1,62 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Server
+namespace ServerCore
 {
     class Listener
     {
-        Socket _listensocket;
-        Action<Socket> _onAcceptHandler;
+        Socket _listenSocket;
+        Func<Session> _sessionFactory; //새션을 생성하는 매서드를 넘겨주는거야
 
-        public void Init(EndPoint endPoint, Action<Socket> onAcceptHandler)
+        public void Init(EndPoint endPoint, Func<Session> sessionFactory)
         {
-            _listensocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            _listensocket.Bind(endPoint);
-            _listensocket.Listen(10);
+            _listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _listenSocket.Bind(endPoint);
+            _listenSocket.Listen(10);
 
-            _onAcceptHandler = onAcceptHandler;
+            _sessionFactory = sessionFactory;
 
-            // 비동기 이벤트를 관리해준다.
-            // 작업에 대한 결과물을 기록.
-            SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+            SocketAsyncEventArgs args = new SocketAsyncEventArgs(); //비동기 이벤트를 관리해주는 녀석
             args.Completed += OnAcceptCompleted;
 
-            RegisterAccept(args); // 한번 등록
+            RegisterAccept(args); //한번 등록
         }
 
         private void RegisterAccept(SocketAsyncEventArgs args)
         {
-            args.AcceptSocket = null; // Accept 된 소켓이 저장됨
+            args.AcceptSocket = null;
 
-            bool pending = _listensocket.AcceptAsync(args); // args 에 기록해달라고 함
+            bool pending = _listenSocket.AcceptAsync(args);
 
-
-            if(!pending)
+            if (!pending)
             {
-                // pending = 대기가 걸렸는가
-                // pending == false 라면 완성된 작업을
-
+                //pending 은 대기가 걸렸는가. pending 이 false라는
                 OnAcceptCompleted(null, args);
-
             }
 
         }
 
         private void OnAcceptCompleted(object sender, SocketAsyncEventArgs args)
         {
-            if(args.SocketError == SocketError.Success)
+            if (args.SocketError == SocketError.Success)
             {
-                // 에러 없이 처리된 경우
-                _onAcceptHandler(args.AcceptSocket);
+                //에러 없이 처리된 경우
+                Session session = _sessionFactory();
+                session.Init(args.AcceptSocket);
+
+                session.OnConnected(args.RemoteEndPoint);
+
             }
-            else // 에러
+            else
             {
-                System.Console.WriteLine(args.SocketError.ToString());
+                Console.WriteLine(args.SocketError.ToString());
             }
 
             RegisterAccept(args);
         }
 
-        // public Socket Accept()
-        // {
-        //     return _listensocket.Accept();
-        // }
     }
 }

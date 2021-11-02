@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "gEMk186r8w57kSqS9mkkkZgLXsEXk2QNV7rYRYGn416/A36Y8beZhanVu0rbi3RVGgmyKOcHnYzJAmFg9D2nVA==",
+  "success": true,
+  "projectFilePath": "/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/ServerCore.csproj",
+  "expectedPackageFiles": [
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

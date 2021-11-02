@@ -14,3 +14,6 @@
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/ref/Client.dll
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.pdb
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.genruntimeconfig.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/bin/Debug/net5.0/ServerCore.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Client/obj/Debug/net5.0/Client.csproj.CopyComplete

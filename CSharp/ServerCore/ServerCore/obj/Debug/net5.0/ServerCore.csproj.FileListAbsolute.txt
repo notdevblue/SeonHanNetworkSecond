@@ -1,0 +1,12 @@
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/bin/Debug/net5.0/ServerCore.deps.json
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/bin/Debug/net5.0/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/bin/Debug/net5.0/ref/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/bin/Debug/net5.0/ServerCore.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.csprojAssemblyReference.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.GeneratedMSBuildEditorConfig.editorconfig
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.AssemblyInfoInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.AssemblyInfo.cs
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.csproj.CoreCompileInputs.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ref/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ServerCore/ServerCore/obj/Debug/net5.0/ServerCore.pdb

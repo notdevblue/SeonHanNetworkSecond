@@ -5,20 +5,22 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace Server
+namespace ServerCore
 {
-    class Session
+    abstract class Session
     {
-        const int DISCONNECTED = 1;
-        const int CONNECTED = 0;
-
         Socket _socket;
-        int _disconnected = CONNECTED; // 맴버변수
+        int _disconnected = 0; //멤버변수
 
         SocketAsyncEventArgs _sendArgs = new SocketAsyncEventArgs();
         Queue<byte[]> _sendQueue = new Queue<byte[]>();
-        bool _pending = false;
-        object _lock = new object();
+
+        List<ArraySegment<byte>> _pendingList = new List<ArraySegment<byte>>();
+        //어떤 배열의 일부를 가져오는 형태야
+
+        //bool _pending = false;
+
+        object _lock = new object(); //락킹용 오브젝트 하나 만들어둘께
 
         public void Init(Socket socket)
         {
@@ -26,31 +28,28 @@ namespace Server
 
             SocketAsyncEventArgs recvArgs = new SocketAsyncEventArgs();
             recvArgs.Completed += OnRecvCompleted;
-
             recvArgs.SetBuffer(new byte[1024], 0, 1024);
-            
-            // 연결에 사용자 정의 값 넣을 수 있음
-            // recvArgs.UserToken = "HAN";
 
+            //recvArgs.UserToken = "GGM";
             RegisterRecv(recvArgs);
 
             _sendArgs.Completed += OnSendCompleted;
         }
 
-        // 이부분은 나중에 구현합시다.
+        public abstract void OnConnected(EndPoint endPoint);
+        public abstract void OnRecv(ArraySegment<byte> buffer);
+        public abstract void OnSend(int numOfBytes);
+        public abstract void OnDisconnected(EndPoint endPoint);
+
+        //이부분은 나중에 구현합시다.
         public void Send(byte[] sendBuffer)
         {
-            // _socket.Send(sendBuffer);
-            // SocketAsyncEventArgs sendArgs = new SocketAsyncEventArgs();
-            // sendArgs.Completed += OnSendCompleted;
-            // sendArgs.SetBuffer(sendBuffer, 0, sendBuffer.Length);
-            // RegisterSend(sendArgs);
-
-            lock(_lock)
+            lock (_lock)
             {
                 _sendQueue.Enqueue(sendBuffer);
 
-                if(!_pending) // 아무도 안 보내고 있음
+                //현재 보내려고 대기중인 애가 없는거야.
+                if (_pendingList.Count == 0)
                 {
                     RegisterSend();
                 }
@@ -59,10 +58,11 @@ namespace Server
 
         public void Disconnect()
         {
-            if(Interlocked.Exchange(ref _disconnected, DISCONNECTED) == DISCONNECTED)
+            if (Interlocked.Exchange(ref _disconnected, 1) == 1)
             {
                 return;
             }
+            OnDisconnected(_socket.RemoteEndPoint);
 
             _socket.Shutdown(SocketShutdown.Both);
             _socket.Close();
@@ -72,24 +72,24 @@ namespace Server
 
         private void RegisterSend()
         {
-            // bool pending = _socket.SendAsync(args);
-            // if(!pending)
-            // {
-            //     OnSendCompleted(null, args);
-            // }
+            //_pending = true;
 
-            _pending = true; // 이미 밖에서 Lock 건 코드만 들어옴
-
-            byte[] buffer = _sendQueue.Dequeue();
-            _sendArgs.SetBuffer(buffer, 0, buffer.Length);
+            //byte[] buffer = _sendQueue.Dequeue();
+            //_sendArgs.SetBuffer(buffer, 0, buffer.Length);
+            while (_sendQueue.Count > 0)
+            {
+                byte[] buffer = _sendQueue.Dequeue();
+                //_sendArgs.BufferList.Add(new ArraySegment<byte>(buffer, 0, buffer.Length));
+                //이렇게 하면 안된다.
+                _pendingList.Add(new ArraySegment<byte>(buffer, 0, buffer.Length));
+            }
+            _sendArgs.BufferList = _pendingList;
 
             bool pending = _socket.SendAsync(_sendArgs);
-
-            if(!pending)
+            if (!pending)
             {
                 OnSendCompleted(null, _sendArgs);
             }
-
         }
 
         private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
@@ -100,33 +100,32 @@ namespace Server
                 {
                     try
                     {
-                        if(_sendQueue.Count > 0)
-                        {
+                        _sendArgs.BufferList = null;
+                        _pendingList.Clear();
+
+                        OnSend(_sendArgs.BytesTransferred);
+
+                        if (_sendQueue.Count > 0)
                             RegisterSend();
-                        }
-                        else
-                        {
-                            _pending = false;
-                        }
-                    
                     }
                     catch (Exception e)
                     {
-                        System.Console.WriteLine($"OnSendCompleted Failed With\r\n > {e}");
+                        Console.WriteLine($"On Send Completed Failed {e}");
                     }
                 }
                 else
                 {
-                    Disconnect(); // 실패하면 종료
+                    Disconnect(); //실패하면 종료
                 }
             }
+
         }
 
         private void RegisterRecv(SocketAsyncEventArgs args)
         {
             bool pending = _socket.ReceiveAsync(args);
 
-            if(!pending)
+            if (!pending)
             {
                 OnRecvCompleted(null, args);
             }
@@ -134,27 +133,25 @@ namespace Server
 
         private void OnRecvCompleted(object sender, SocketAsyncEventArgs args)
         {
-            if(args.BytesTransferred > 0)
+            if (args.BytesTransferred > 0)
             {
                 try
                 {
-                    // buffer 위에서 설정함, BytesTransferred 하면 뒤에 쓰레기값 안 가져올 수 있음
-                    string recvString = Encoding.UTF8.GetString(args.Buffer, 0, args.BytesTransferred);
-                    System.Console.WriteLine(recvString);
+                    OnRecv(new ArraySegment<byte>(args.Buffer, args.Offset, args.BytesTransferred));
+
                     RegisterRecv(args);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    System.Console.WriteLine(e);
+                    Console.WriteLine(e);
                 }
             }
             else
             {
-                // 소켓 종료 해야하는 경우
+                //소켓 종료를 해야할 경우임
             }
+
         }
-        #endregion // 네트워크 통신부
-
-
+        #endregion
     }
 }

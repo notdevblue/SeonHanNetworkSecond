@@ -14,3 +14,6 @@
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ref/ThreadServer.dll
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.pdb
 /home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.genruntimeconfig.cache
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ServerCore.dll
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/bin/Debug/net5.0/ServerCore.pdb
+/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/ThreadServer/obj/Debug/net5.0/ThreadServer.csproj.CopyComplete
