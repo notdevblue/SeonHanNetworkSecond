@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nn3kytTqmPlDxBMUGFqgYQ/bNcGjW7jIymoYXIll2U0YsJ2hi++IMDs6/zCPcHbQV3MBgO9ZkYzu6sJijC2xDg==",
+  "dgSpecHash": "hbwUPgyXSLjPxsDJ1NWTMbML3EuFz6hbnsrog2QnZGFmn6bEsJuKcl1Edpc4moBWuEphh29ulgwjP5ce2nkjeQ==",
   "success": true,
-  "projectFilePath": "/home/han/Documents/AfterSchool/SeonHanNetworkSecond/CSharp/Server/Server.csproj",
-  "expectedPackageFiles": [
-    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharp/Server/Server.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

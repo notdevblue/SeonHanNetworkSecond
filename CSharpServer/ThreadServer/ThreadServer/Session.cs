@@ -20,18 +20,17 @@ namespace ServerCore
                 {
                     break;
                 }
-
-                // reads 2 byte
+                //앞대가리에서 2바이트를 읽어
                 ushort dataSize = BitConverter.ToUInt16(buffer.Array, buffer.Offset);
-                if(buffer.Count < dataSize) // not fully recved packet
+                if(buffer.Count < dataSize)
                 {
                     break;
                 }
 
                 processLen += dataSize;
-
                 OnRecvPacket(new ArraySegment<byte>(buffer.Array, buffer.Offset, dataSize));
-                buffer = new ArraySegment<byte>(buffer.Array, buffer.Offset + dataSize, buffer.Count - dataSize);
+                buffer = new ArraySegment<byte>(
+                    buffer.Array, buffer.Offset + dataSize, buffer.Count - dataSize);
             }
             return processLen;
         }

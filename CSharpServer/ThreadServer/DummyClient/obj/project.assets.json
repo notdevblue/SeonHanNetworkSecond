@@ -1,10 +1,20 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    ".NETCoreApp,Version=v3.1": {
+      "PacketGenerator/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/PacketGenerator.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PacketGenerator.dll": {}
+        }
+      },
       "ServerCore/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
+        "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
           "bin/placeholder/ServerCore.dll": {}
         },
@@ -15,6 +25,11 @@
     }
   },
   "libraries": {
+    "PacketGenerator/1.0.0": {
+      "type": "project",
+      "path": "../PacketGenerator/PacketGenerator.csproj",
+      "msbuildProject": "../PacketGenerator/PacketGenerator.csproj"
+    },
     "ServerCore/1.0.0": {
       "type": "project",
       "path": "../ThreadServer/ServerCore.csproj",
@@ -22,7 +37,8 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    ".NETCoreApp,Version=v3.1": [
+      "PacketGenerator >= 1.0.0",
       "ServerCore >= 1.0.0"
     ]
   },
@@ -42,15 +58,18 @@
         "/home/han/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp5.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "netcoreapp5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/PacketGenerator.csproj": {
+              "projectPath": "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/PacketGenerator.csproj"
+            },
             "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/ThreadServer/ServerCore.csproj": {
               "projectPath": "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/ThreadServer/ServerCore.csproj"
             }
@@ -64,8 +83,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "netcoreapp5.0",
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -76,6 +95,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[3.1.16, 3.1.16]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

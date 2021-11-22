@@ -1,10 +1,10 @@
+using ServerCore;
 using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServerCore;
 
 namespace Server
 {
@@ -13,7 +13,7 @@ namespace Server
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"OnConnected From : {endPoint}");
-            byte[] sendBuffer = Encoding.UTF8.GetBytes("Welcome to Arch Linux");
+            byte[] sendBuffer = Encoding.UTF8.GetBytes("Welcome to GGM server");
             Send(sendBuffer);
             Thread.Sleep(1000);
             Disconnect();
@@ -24,11 +24,11 @@ namespace Server
             Console.WriteLine($"OnDisConnected From : {endPoint}");
         }
 
-        public override int  OnRecv(ArraySegment<byte> buffer)
+        public override int OnRecv(ArraySegment<byte> buffer)
         {
             string recvString = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count);
             Console.WriteLine($"받은 데이터 : {recvString}");
-            return 0;
+            return 0; //나중에 여기 고칠꺼야
         }
 
         public override void OnSend(int numOfBytes)
@@ -37,7 +37,7 @@ namespace Server
         }
     }
 
-    class Program
+    class ServerProgram
     {
         static Listener _listener = new Listener();
 
@@ -59,5 +59,4 @@ namespace Server
             }
         }
     }
-
 }
