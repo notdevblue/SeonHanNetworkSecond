@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4PrGJeszAYYDCRXBzPiVP4PLSiF64skf93vbvl+ZHQINMK7s8J53wFt2I6toxMjPoEuQYdd0TReflmw9x9+9Vg==",
+  "dgSpecHash": "ZSXsxIqSX1nXbocLm5pbnY17cE4V9CGINQzxRtp6id4f09vo2UjDB4QHL/lV0ihclfIXB2mKtol/5g6EI05xBw==",
   "success": true,
-  "projectFilePath": "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/DummyClient/DummyClient.csproj",
+  "projectFilePath": "/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/DummyClient/DummyClient.csproj",
   "expectedPackageFiles": [
-    "/home/han/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
-    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "/home/han/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.16/microsoft.netcore.app.host.linux-x64.3.1.16.nupkg.sha512"
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,0 +1,14 @@
+/home/han/bin/netcore6.0/PacketGenerator
+/home/han/bin/netcore6.0/PacketGenerator.deps.json
+/home/han/bin/netcore6.0/PacketGenerator.runtimeconfig.json
+/home/han/bin/netcore6.0/PacketGenerator.dll
+/home/han/bin/netcore6.0/ref/PacketGenerator.dll
+/home/han/bin/netcore6.0/PacketGenerator.pdb
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.GeneratedMSBuildEditorConfig.editorconfig
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.AssemblyInfoInputs.cache
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.AssemblyInfo.cs
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.csproj.CoreCompileInputs.cache
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.dll
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/ref/PacketGenerator.dll
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.pdb
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/PacketGenerator.genruntimeconfig.cache

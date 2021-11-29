@@ -9,4 +9,8 @@
       <float name="duration"/>
     </list>
   </packet>
+  <packet name="TestGGM">
+    <int name="sName"/>
+    <string name="difficulty"/>
+  </packet>
 </PDL>

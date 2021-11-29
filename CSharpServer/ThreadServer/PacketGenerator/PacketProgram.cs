@@ -7,90 +7,110 @@ namespace PacketGenerator
 {
     class PacketProgram
     {
-        static string genPackets;
-        static Dictionary<string, string> typeDict = new Dictionary<string, string>();
+        static string genPackets; //만들어진 패킷 코드 스트링을 저장하는 곳
+        static Dictionary<string, string> typeDic = new Dictionary<string, string>();
+        static int packetId = 0;
+        static string packetEnums = "";
+        static string managerRegister = "";
 
         static PacketProgram()
         {
-            typeDict.Add("bool", "ToBoolean");
-            typeDict.Add("short", "ToInt16");
-            typeDict.Add("ushort", "ToUInt16");
-            typeDict.Add("int", "ToInt32");
-            typeDict.Add("long", "ToInt64");
-            typeDict.Add("float", "ToSingle");
-            typeDict.Add("double", "ToDouble");
+            typeDic.Add("bool", "ToBoolean");
+            typeDic.Add("short", "ToInt16");
+            typeDic.Add("ushort", "ToUInt16");
+            typeDic.Add("int", "ToInt32");
+            typeDic.Add("long", "ToInt64");
+            typeDic.Add("float", "ToSingle");
+            typeDic.Add("double", "ToDouble");
         }
+
 
         static void Main(string[] args)
         {
+            string pdlPath = "PDL.xml";
+
             XmlReaderSettings settings = new XmlReaderSettings()
             {
                 IgnoreComments = true,
                 IgnoreWhitespace = true
             };
 
-            using(XmlReader reader = XmlReader.Create("PDL.xml", settings))
+            if(args.Length >= 1)
+            {
+                pdlPath = args[0];
+            }
+
+            using (XmlReader reader = XmlReader.Create(pdlPath, settings))
             {
                 reader.MoveToContent(); //헤더 건너뛰고 바로 컨텐츠까지 직진
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    if(reader.Depth == 1 && reader.NodeType == XmlNodeType.Element)
+                    if (reader.Depth == 1 && reader.NodeType == XmlNodeType.Element)
                     {
                         ParsePacket(reader);
                     }
                     Console.WriteLine(reader.Name);
                 }
-                File.WriteAllText("GenPacks.cs", genPackets);
+                string fileText = string.Format(PacketFormat.fileFormat, packetEnums, genPackets);
+
+                File.WriteAllText("GenPacks.cs", fileText);
+
+                string managerText = string.Format(PacketFormat.managerFormat, managerRegister);
+                File.WriteAllText("PacketManager.cs", managerText);
             }
         }
 
         public static void ParsePacket(XmlReader r)
         {
-            if (r.Name.ToLower() != "packet" ) return;
+            if (r.Name.ToLower() != "packet") return;
 
             string packetName = r["name"];
-            if(string.IsNullOrEmpty(packetName) )
+            if (string.IsNullOrEmpty(packetName))
             {
                 Console.WriteLine("Error packet without name!");
                 return;
             }
 
             (string member, string read, string write) = ParseMember(r);
-            genPackets += string.Format(PakcetFormat.packetFormat, packetName, member, read, write);
+            genPackets += string.Format(PacketFormat.packetFormat, packetName, member, read, write);
+
+            packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, ++packetId) + Environment.NewLine + "\t";
+
+            managerRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine; 
         }
 
-        public static Tuple<string,string,string> ParseMember(XmlReader r)
+        public static Tuple<string, string, string> ParseMember(XmlReader r)
         {
             string memberCode = "";
             string readCode = "";
             string writeCode = "";
 
-            // string packetName = r["name"];
+            //string packetName = r["name"];
 
-            int depth = r.Depth + 1;
+            int depth = r.Depth + 1; // 파싱할 깊이
 
-            while(r.Read()) // reans xml by line
+            while (r.Read())
             {
-                if(r.Depth != depth)
+                if (r.Depth != depth)
                     break;
-                string memberName = r["name"];
 
-                if(string.IsNullOrEmpty(memberName))
+                string memberName = r["name"];
+                if (string.IsNullOrEmpty(memberName))
                 {
-                    System.Console.WriteLine("Err : Member Without name");
+                    Console.WriteLine("Error : Member without name");
                     return null;
                 }
 
                 if (string.IsNullOrEmpty(memberCode) == false)
-                    memberCode += Environment.NewLine;
+                    memberCode += Environment.NewLine; //엔터 \n cr lf
                 if (string.IsNullOrEmpty(readCode) == false)
-                    readCode += Environment.NewLine;
+                    readCode += Environment.NewLine; //엔터 \n cr lf
                 if (string.IsNullOrEmpty(writeCode) == false)
-                    writeCode += Environment.NewLine;
+                    writeCode += Environment.NewLine; //엔터 \n cr lf
 
                 string memberType = r.Name.ToLower();
 
-                switch(memberType)
+                switch (memberType)
                 {
                     case "bool":
                     case "short":
@@ -99,32 +119,30 @@ namespace PacketGenerator
                     case "long":
                     case "double":
                     case "float":
-                        memberCode += String.Format(PakcetFormat.memberFormat, memberType, memberName);
-                        readCode   += String.Format(PakcetFormat.readFormat, memberName, typeDict[memberType], memberType);
-                        writeCode  += String.Format(PakcetFormat.writeFormat, memberName, memberType);
+                        memberCode += string.Format(PacketFormat.memberFormat, memberType, memberName);
+                        readCode += string.Format(PacketFormat.readFormat,
+                            memberName, typeDic[memberType], memberType);
+                        writeCode += string.Format(PacketFormat.writeFormat, memberName, memberType);
                         break;
-
                     case "string":
-                        memberCode += String.Format(PakcetFormat.memberFormat, memberType, memberName);
-                        readCode   += String.Format(PakcetFormat.stringReadFormat, memberName);
-                        writeCode  += String.Format(PakcetFormat.stringWriteFormat, memberName);
+                        memberCode += string.Format(PacketFormat.memberFormat, memberType, memberName);
+                        readCode += string.Format(PacketFormat.stringReadFormat, memberName);
+                        writeCode += string.Format(PacketFormat.stringWriteFormat, memberName);
                         break;
-
                     case "list":
                         (string member, string read, string write) = ParseList(r);
                         memberCode += member;
-                        readCode   += read;
-                        writeCode  += write;
+                        readCode += read;
+                        writeCode += write;
                         break;
-
                     default:
                         break;
                 }
             }
 
             memberCode = memberCode.Replace(Environment.NewLine, Environment.NewLine + "\t");
-            readCode   = memberCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
-            writeCode  = memberCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
+            readCode = readCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
+            writeCode = writeCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
 
             return new Tuple<string, string, string>(memberCode, readCode, writeCode);
         }
@@ -135,15 +153,18 @@ namespace PacketGenerator
 
             if (string.IsNullOrEmpty(listName))
             {
-                System.Console.WriteLine("Err: List without name");
+                Console.WriteLine("Error : List without name!");
                 return null;
             }
 
             (string member, string read, string write) = ParseMember(r);
 
-            string memberCode = string.Format(PakcetFormat.memberListFormat, FirstUpper(listName), FirstLower(listName), member, read, write);
-            string readCode   = string.Format(PakcetFormat.listReadFormat, FirstUpper(listName), FirstLower(listName));
-            string writeCode  = string.Format(PakcetFormat.listWriteFormat, FirstUpper(listName), FirstLower(listName));
+            string memberCode = string.Format(PacketFormat.memberListFormat,
+                                FirstUpper(listName), FirstLower(listName), member, read, write);
+            string readCode = string.Format(PacketFormat.listReadFormat,
+                                FirstUpper(listName), FirstLower(listName));
+            string writeCode = string.Format(PacketFormat.listWriteFormat,
+                                FirstUpper(listName), FirstLower(listName));
 
             return new Tuple<string, string, string>(memberCode, readCode, writeCode);
         }

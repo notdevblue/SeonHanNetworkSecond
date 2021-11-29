@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bYpLgFqs+ln/+QHg5YieaXeBv+WuNuXuBkXjL2sEedyfMpHsLHCFIPvWw6H4bjKSj1uiwVVecvIPlsPR7WGR1A==",
+  "dgSpecHash": "A3kWxue4mAvqnwyiQqnxjPr4R4O3yci6bqDlFNg6zCv0JPMCXed195OakTNUn5ZHZjQZe49woXfzIQvxrJUTsQ==",
   "success": true,
-  "projectFilePath": "/home/han/Documents/AfterClass/SeonHanNetworkSecond/CSharpServer/ThreadServer/ThreadServer/ServerCore.csproj",
+  "projectFilePath": "/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/ThreadServer/ServerCore.csproj",
   "expectedPackageFiles": [
-    "/home/han/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
-    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

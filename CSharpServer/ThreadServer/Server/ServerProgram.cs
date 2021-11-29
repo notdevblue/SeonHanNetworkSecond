@@ -17,6 +17,7 @@ namespace Server
 
         static void Main(string[] args)
         {
+            PacketManager.Instance.Register();
             //입장을 담당할 리스너를 만들자
             string host = Dns.GetHostName();
             Console.WriteLine(host);
