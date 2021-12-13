@@ -1,0 +1,13 @@
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.exe
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.deps.json
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.runtimeconfig.json
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.runtimeconfig.dev.json
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.dll
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\bin\Release\netcoreapp3.1\ServerCore.pdb
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.csprojAssemblyReference.cache
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.AssemblyInfoInputs.cache
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.AssemblyInfo.cs
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.csproj.CoreCompileInputs.cache
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.dll
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.pdb
+C:\Users\USER-001\source\repos\ThreadServer\ThreadServer\obj\Release\netcoreapp3.1\ServerCore.genruntimeconfig.cache

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PDL>
+  <!--게임 접속시에 주변 유저들에게 뿌리는 패킷-->
+  <packet name="BroadcastEnterGame" usage="server">
+    <int name="playerId"/>
+    <float name="posX"/>
+    <float name="posY"/>
+    <float name="posZ"/>
+    <float name="r"/>
+    <float name="g"/>
+    <float name="b"/>
+    <!--벡터3로 할거면 알맞게--> 
+  </packet>
+  <packet name="LeaveGame" usage="client">
+  </packet>
+  <packet name="BroadcastLeaveGame" usage="server">
+    <int name="playerId"/>
+  </packet>
+  <packet name="PlayerList" usage="server">
+    <list name="player">
+      <bool name="isSelf"/> <!--자기자신인가?-->
+      <int name="playerId"/>
+      <float name="posX"/>
+      <float name="posY"/>
+      <float name="posZ"/>
+      <float name="r"/>
+      <float name="g"/>
+      <float name="b"/>
+    </list>
+  </packet>
+  
+  <!--이동관련 패킷-->
+  <packet name="Move" usage="client">
+    <float name="posX"/>
+    <float name="posY"/>
+    <float name="posZ"/>
+  </packet>
+  <packet name="BroadcastMove" usage="server">
+    <int name="playerId"/>
+    <float name="posX"/>
+    <float name="posY"/>
+    <float name="posZ"/>
+  </packet>
+</PDL>
