@@ -10,11 +10,12 @@ public class PlayerManager
 
     public static PlayerManager Instance { get; } = new PlayerManager();
 
-    CinemachineVirtualCamera vCam;
+    public CinemachineVirtualCamera vCam;
 
     public void Add(PlayerList listPacket)
     {
         Object obj = Resources.Load("Player");
+        vCam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
 
         foreach (PlayerList.Player p in listPacket.players)
         {
@@ -50,9 +51,11 @@ public class PlayerManager
 
             _players.Add(packet.playerId, player);
         }
-        
-        _myPlayer.GetComponent<Renderer>().material.SetColor("_Color", new Color(packet.r, packet.g, packet.b));
-
+        else
+        {
+            vCam.Follow = _myPlayer.transform;
+            _myPlayer.GetComponent<Renderer>().material.SetColor("_Color", new Color(packet.r, packet.g, packet.b));
+        }
     }
 
     public void Leave(BroadcastLeaveGame packet)
@@ -77,6 +80,8 @@ public class PlayerManager
     {
         if(_myPlayer.PlayerId == packet.playerId)
         {
+            _myPlayer.t = 0.0f;
+            _myPlayer.lastPos = _myPlayer.transform.position;
             _myPlayer.targetPos = new Vector3(packet.posX, packet.posY, packet.posZ);
         }
         else
@@ -84,6 +89,8 @@ public class PlayerManager
             Player player = null;
             if(_players.TryGetValue(packet.playerId, out player))
             {
+                player.t = 0.0f;
+                player.lastPos = player.transform.position;
                 player.targetPos = new Vector3(packet.posX, packet.posY, packet.posZ);
             }
         }

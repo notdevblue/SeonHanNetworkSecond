@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "lJyqWe++11bvvP5T3a73niPjEBK2FTagoM1bs7KcIaxLmBIfQ/aktJBmYvC2DTof1yQtoyODAv+8I1fWoAFJjw==",
+  "dgSpecHash": "MSZP+H5APp6XN1AGpXG3Qm66iBOUzUWr36ZXymYbhS63QUaCF1WDukFaPr2OoJKm8RS92iuNSMbrtYCPumHsrQ==",
   "success": true,
-  "projectFilePath": "F:\\SchoolFiles\\ThreadServer\\ThreadServer\\DummyClient\\DummyClient.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/han/Documents/SeonHanNetworkSecond/ThreadServer/DummyClient/DummyClient.csproj",
+  "expectedPackageFiles": [
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

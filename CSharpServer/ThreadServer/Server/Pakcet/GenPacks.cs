@@ -8,8 +8,8 @@ using System.Threading;
 
 public enum PacketID
 {
-    PlayerInfoReq = 1, 
-	TestGGM = 2, 
+    ChatMSG = 1, 
+	CharBord = 2, 
 	
 }
 
@@ -23,42 +23,11 @@ public interface IPacket
 
 
 
-class PlayerInfoReq : IPacket
+class ChatMSG : IPacket
 {
-    public long playerId;
-	public string name;
-	
-	public struct Skill
-	{
-	    public int id;
-		public short level;
-		public float duration;
-	
-	    public void Read(ArraySegment<byte> segment, ref ushort count)
-	    {
-	        this.id = BitConverter.ToInt32(segment.Array, segment.Offset + count);
-			count += sizeof(int);
-			this.level = BitConverter.ToInt16(segment.Array, segment.Offset + count);
-			count += sizeof(short);
-			this.duration = BitConverter.ToSingle(segment.Array, segment.Offset + count);
-			count += sizeof(float);
-	    }
-	
-	    public void Write(ArraySegment<byte> segment, ref ushort count)
-	    {
-	        Array.Copy(BitConverter.GetBytes(this.id), 0, segment.Array, segment.Offset + count, sizeof(int));
-			count += sizeof(int);
-			Array.Copy(BitConverter.GetBytes(this.level), 0, segment.Array, segment.Offset + count, sizeof(short));
-			count += sizeof(short);
-			Array.Copy(BitConverter.GetBytes(this.duration), 0, segment.Array, segment.Offset + count, sizeof(float));
-			count += sizeof(float);
-	    }    
-	}
-	
-	public List<Skill> skills = new List<Skill>();
-	
+    public string water;
     
-	public ushort Protocol { get { return (ushort)PacketID.PlayerInfoReq; } }
+	public ushort Protocol { get { return (ushort)PacketID.ChatMSG; } }
 
     public void Read(ArraySegment<byte> segment)
     {
@@ -66,24 +35,10 @@ class PlayerInfoReq : IPacket
         count += sizeof(ushort);
         count += sizeof(ushort);
         
-        this.playerId = BitConverter.ToInt64(segment.Array, segment.Offset + count);
-		count += sizeof(long);
-		ushort nameLen = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
+        ushort waterLen = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
 		count += sizeof(ushort);
-		this.name = Encoding.Unicode.GetString(segment.Array, segment.Offset + count, nameLen);
-		count += nameLen;
-		
-		skills.Clear();
-		
-		ushort skillLen = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
-		count += sizeof(ushort);
-		
-		for (int i = 0; i < skillLen; i++)
-		{
-		    Skill skill = new Skill();
-		    skill.Read(segment, ref count);
-		    skills.Add(skill);
-		}
+		this.water = Encoding.Unicode.GetString(segment.Array, segment.Offset + count, waterLen);
+		count += waterLen;
     }
 
     public ArraySegment<byte> Write()
@@ -95,24 +50,12 @@ class PlayerInfoReq : IPacket
         Array.Copy(BitConverter.GetBytes(this.Protocol), 0, segment.Array, segment.Offset + count, sizeof(ushort));
         count += sizeof(ushort);
         
-        Array.Copy(BitConverter.GetBytes(this.playerId), 0, segment.Array, segment.Offset + count, sizeof(long));
-		count += sizeof(long);
-		ushort nameLen = (ushort)Encoding.Unicode.GetByteCount(this.name);
-		Array.Copy(BitConverter.GetBytes(nameLen), 0, segment.Array, segment.Offset + count, sizeof(ushort));
+        ushort waterLen = (ushort)Encoding.Unicode.GetByteCount(this.water);
+		Array.Copy(BitConverter.GetBytes(waterLen), 0, segment.Array, segment.Offset + count, sizeof(ushort));
 		count += sizeof(ushort);
-		byte[] nameByte = Encoding.Unicode.GetBytes(this.name);
-		Array.Copy(nameByte, 0, segment.Array, segment.Offset + count, nameLen);
-		count += nameLen;
-		
-		Array.Copy(BitConverter.GetBytes((ushort)this.skills.Count), 0,
-		                segment.Array, segment.Offset + count, sizeof(ushort));
-		count += sizeof(ushort);
-		
-		foreach (Skill skill in this.skills)
-		{
-		    skill.Write(segment, ref count);
-		}
-		
+		byte[] waterByte = Encoding.Unicode.GetBytes(this.water);
+		Array.Copy(waterByte, 0, segment.Array, segment.Offset + count, waterLen);
+		count += waterLen;
         
         Array.Copy(BitConverter.GetBytes(count), 0, segment.Array, segment.Offset, sizeof(ushort));
 
@@ -120,12 +63,11 @@ class PlayerInfoReq : IPacket
     }
 }
 
-class TestGGM : IPacket
+class CharBord : IPacket
 {
-    public int sName;
-	public string difficulty;
+    public string chat;
     
-	public ushort Protocol { get { return (ushort)PacketID.TestGGM; } }
+	public ushort Protocol { get { return (ushort)PacketID.CharBord; } }
 
     public void Read(ArraySegment<byte> segment)
     {
@@ -133,12 +75,10 @@ class TestGGM : IPacket
         count += sizeof(ushort);
         count += sizeof(ushort);
         
-        this.sName = BitConverter.ToInt32(segment.Array, segment.Offset + count);
-		count += sizeof(int);
-		ushort difficultyLen = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
+        ushort chatLen = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
 		count += sizeof(ushort);
-		this.difficulty = Encoding.Unicode.GetString(segment.Array, segment.Offset + count, difficultyLen);
-		count += difficultyLen;
+		this.chat = Encoding.Unicode.GetString(segment.Array, segment.Offset + count, chatLen);
+		count += chatLen;
     }
 
     public ArraySegment<byte> Write()
@@ -150,14 +90,12 @@ class TestGGM : IPacket
         Array.Copy(BitConverter.GetBytes(this.Protocol), 0, segment.Array, segment.Offset + count, sizeof(ushort));
         count += sizeof(ushort);
         
-        Array.Copy(BitConverter.GetBytes(this.sName), 0, segment.Array, segment.Offset + count, sizeof(int));
-		count += sizeof(int);
-		ushort difficultyLen = (ushort)Encoding.Unicode.GetByteCount(this.difficulty);
-		Array.Copy(BitConverter.GetBytes(difficultyLen), 0, segment.Array, segment.Offset + count, sizeof(ushort));
+        ushort chatLen = (ushort)Encoding.Unicode.GetByteCount(this.chat);
+		Array.Copy(BitConverter.GetBytes(chatLen), 0, segment.Array, segment.Offset + count, sizeof(ushort));
 		count += sizeof(ushort);
-		byte[] difficultyByte = Encoding.Unicode.GetBytes(this.difficulty);
-		Array.Copy(difficultyByte, 0, segment.Array, segment.Offset + count, difficultyLen);
-		count += difficultyLen;
+		byte[] chatByte = Encoding.Unicode.GetBytes(this.chat);
+		Array.Copy(chatByte, 0, segment.Array, segment.Offset + count, chatLen);
+		count += chatLen;
         
         Array.Copy(BitConverter.GetBytes(count), 0, segment.Array, segment.Offset, sizeof(ushort));
 

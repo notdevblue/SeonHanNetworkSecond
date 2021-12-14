@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "v960ToJ9t2f1NkRywDJfKJty/6IsiQKyEf/peI/UvLX/3WEn9YDme2RlmXaNevdSpZmRYHUlHb1f+cJiMdUuOg==",
+  "dgSpecHash": "XudK0503tHyE7zHibF7lWZzsNxGe5IOzsle/s3dm8sBaz9V9xeow+IYNQAQFcYH5Kg/I3AOhQG98nxhy7dvV3w==",
   "success": true,
-  "projectFilePath": "F:\\SchoolFiles\\ThreadServer\\ThreadServer\\ThreadServer\\ServerCore.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/ServerCore.csproj",
+  "expectedPackageFiles": [
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

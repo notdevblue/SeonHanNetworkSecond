@@ -34,7 +34,8 @@ public class NetworkManager : MonoBehaviour
     {
         string host = Dns.GetHostName();
         IPHostEntry ipHost = Dns.GetHostEntry(host);
-        IPAddress ipAddr = ipHost.AddressList[0];
+        // IPAddress ipAddr = ipHost.AddressList[0];
+        IPAddress ipAddr = IPAddress.Parse("127.0.1.1");
         IPEndPoint endPoint = new IPEndPoint(ipAddr, 55000);
 
         Connector connector = new Connector();

@@ -1,0 +1,12 @@
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/bin/Debug/netcoreapp6.0/ServerCore.deps.json
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/bin/Debug/netcoreapp6.0/ServerCore.dll
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/bin/Debug/netcoreapp6.0/ref/ServerCore.dll
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/bin/Debug/netcoreapp6.0/ServerCore.pdb
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.csproj.AssemblyReference.cache
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.GeneratedMSBuildEditorConfig.editorconfig
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.AssemblyInfoInputs.cache
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.AssemblyInfo.cs
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.csproj.CoreCompileInputs.cache
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.dll
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ref/ServerCore.dll
+/home/han/Documents/SeonHanNetworkSecond/ThreadServer/ThreadServer/obj/Debug/netcoreapp6.0/ServerCore.pdb

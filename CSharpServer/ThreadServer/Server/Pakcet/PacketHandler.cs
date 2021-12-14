@@ -1,18 +1,22 @@
 using ServerCore;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 class PacketHandler
 {
-    public static void PlayerInfoReqHandler(PacketSession session, IPacket packet)
-    {
-        PlayerInfoReq p = packet as PlayerInfoReq;
-        System.Console.WriteLine($"PlayerInfoReq: {packet}");
 
-        foreach(PlayerInfoReq.Skill s in p.skills)
+    public static void ChatMSGHandler(PacketSession session, IPacket packet)
+    {
+        ChatMSG p = packet as ChatMSG;
+        ClientSession clientSession = session as ClientSession;
+
+        if(clientSession.Room == null)
         {
-            System.Console.WriteLine($"skill {s.id} : LV.{s.level}, Dur:{s.duration}");
+            return; // 방에 안 들어왔는데 메새지 보내면 잘못된검
         }
+
+        clientSession.Room.BroadCast(clientSession, p.chat);
     }
 }

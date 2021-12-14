@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float speed = 2.0f;
+
     public int PlayerId {get; set;}
 
+    public float t = 0.0f;
 
+    public Vector3 lastPos;
     public Vector3 targetPos;
+
+
 
     protected virtual void Update()
     {
@@ -16,6 +22,7 @@ public class Player : MonoBehaviour
 
     public void ToDist()
     {
-        transform.position = Vector3.Lerp(transform.position, targetPos, 0.05f);
+        t += Time.deltaTime * speed;
+        transform.position = Vector3.Lerp(lastPos, targetPos, t);
     }
 }

@@ -11,7 +11,9 @@ namespace PacketGenerator
         static Dictionary<string, string> typeDic = new Dictionary<string, string>();
         static int packetId = 0;
         static string packetEnums = "";
-        static string managerRegister = "";
+
+        static string clientRegister = "";
+        static string serverRegister = "";
 
         static PacketProgram()
         {
@@ -55,8 +57,11 @@ namespace PacketGenerator
 
                 File.WriteAllText("GenPacks.cs", fileText);
 
-                string managerText = string.Format(PacketFormat.managerFormat, managerRegister);
-                File.WriteAllText("PacketManager.cs", managerText);
+                string clientManagerText = string.Format(PacketFormat.managerFormat, clientRegister);
+                File.WriteAllText("ClientPacketManager.cs", clientManagerText);
+
+                string serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
+                File.WriteAllText("ServerPacketManager.cs", serverManagerText);
             }
         }
 
@@ -71,12 +76,25 @@ namespace PacketGenerator
                 return;
             }
 
+            string usage = r["usage"];
+            if(string.IsNullOrEmpty(usage))
+            {
+                System.Console.WriteLine("Error packet without usage!");
+                return;
+            }
+
             (string member, string read, string write) = ParseMember(r);
             genPackets += string.Format(PacketFormat.packetFormat, packetName, member, read, write);
 
             packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, ++packetId) + Environment.NewLine + "\t";
-
-            managerRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine; 
+            if (usage.Equals("client")) {
+                clientRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine;
+            } else if (usage.Equals("server")) {
+                serverRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine;
+            } else {
+                System.Console.WriteLine($"Err: Packet usage invalid");
+                return;
+            }
         }
 
         public static Tuple<string, string, string> ParseMember(XmlReader r)

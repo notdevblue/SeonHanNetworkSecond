@@ -35,12 +35,12 @@ public class MultiPlayerBuild
 
     public static void PerformWin64Build(int playerCount)
     {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneLinux64);
         for (int i = 1; i <= playerCount; ++i)
         {
             BuildPipeline.BuildPlayer(GetScenePaths(),
             $"Builds/Win64/{GetProjectName()}{i}/{GetProjectName()}{i}.exe",
-            BuildTarget.StandaloneWindows64,
+            BuildTarget.StandaloneLinux64,
             BuildOptions.AutoRunPlayer);
         }
     }

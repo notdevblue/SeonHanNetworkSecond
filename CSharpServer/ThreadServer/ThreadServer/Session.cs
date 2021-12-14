@@ -104,7 +104,7 @@ namespace ServerCore
 
         private void RegisterSend()
         {
-            //_pending = true;
+            if(_disconnected == 1) return;
 
             //byte[] buffer = _sendQueue.Dequeue();
             //_sendArgs.SetBuffer(buffer, 0, buffer.Length);
@@ -117,10 +117,28 @@ namespace ServerCore
             }
             _sendArgs.BufferList = _pendingList;
 
-            bool pending = _socket.SendAsync(_sendArgs);
-            if(!pending)
+            try
             {
-                OnSendCompleted(null, _sendArgs);
+
+
+                bool pending = _socket.SendAsync(_sendArgs);
+                if (!pending)
+                {
+                    OnSendCompleted(null, _sendArgs);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public void Clear()
+        {
+            lock(_lock)
+            {
+                _sendQueue.Clear();
+                _pendingList.Clear();
             }
         }
 
@@ -158,12 +176,19 @@ namespace ServerCore
             _recvBuffer.Clean(); // 버퍼를 청소해주고
             ArraySegment<byte> segment = _recvBuffer.WriteSegment;
             args.SetBuffer(segment.Array, segment.Offset, segment.Count);
-
+            try
+            {
             bool pending = _socket.ReceiveAsync(args);
 
             if(!pending)
             {
                 OnRecvCompleted(null, args);
+                }
+
+            } 
+            catch (Exception e)
+            {
+                System.Console.WriteLine($"Register Recv Failed");
             }
         }
 

@@ -25,3 +25,6 @@
 /home/han/bin/netcore6.0/PacketGenerator.dll
 /home/han/bin/netcore6.0/ref/PacketGenerator.dll
 /home/han/bin/netcore6.0/PacketGenerator.pdb
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/bin/Debug/netcoreapp6.0/ServerCore.dll
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/bin/Debug/netcoreapp6.0/ServerCore.pdb
+/home/han/Documents/SeonHanNetworkSecond/CSharpServer/ThreadServer/PacketGenerator/obj/Debug/netcoreapp6.0/PacketGenerator.csproj.CopyComplete

@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PDL>
-  <packet name="PlayerInfoReq">
-    <long name="playerId"/>
-    <string name="name"/>
-    <list name="Skill">
-      <int name="id"/>
-      <short name="level"/>
-      <float name="duration"/>
-    </list>
+  <!--클리이언트에서 서버로 보내는 패킷-->
+  <packet name="ChatMSG" usage="client">
+    <string name="water"/>
   </packet>
-  <packet name="TestGGM">
-    <int name="sName"/>
-    <string name="difficulty"/>
+
+  <packet name="CharBord" usage="server">
+    <string name="chat"/>
+    <int name="playerId"/>
   </packet>
+  
 </PDL>

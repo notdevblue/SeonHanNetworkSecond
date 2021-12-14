@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "b1YXHg0rJlmJuDzJV7pp0eU1fH/pQ+DyShQhpegrKRTsgaRQYpqrO5q8ckfpX7YX5xgvhFs6ebK/6wWx0sTsOA==",
+  "dgSpecHash": "J5DMcW8H7XLIu4PKURteEhx3KejotrJgxvIcpcv7uEcmtRPtVShc4bDaPcM4TwVU751TOA0kgEYKv9NmJLjMxg==",
   "success": true,
-  "projectFilePath": "F:\\SchoolFiles\\ThreadServer\\ThreadServer\\PacketGenerator\\PacketGenerator.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/han/Documents/SeonHanNetworkSecond/ThreadServer/PacketGenerator/PacketGenerator.csproj",
+  "expectedPackageFiles": [
+    "/home/han/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

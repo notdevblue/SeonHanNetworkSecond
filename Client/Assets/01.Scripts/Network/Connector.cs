@@ -33,7 +33,8 @@ namespace ServerCore
             if (socket == null) return;
 
             bool pending = socket.ConnectAsync(args);
-            if(pending == false)
+            
+            if(pending == false) // TODO : no resp
             {
                 OnConnectedCompleted(null, args);
             }
@@ -41,15 +42,16 @@ namespace ServerCore
 
         private void OnConnectedCompleted(object sender, SocketAsyncEventArgs args)
         {
+
             if(args.SocketError == SocketError.Success)
             {
                 Session session = _sessionFactory();
                 session.Init(args.ConnectSocket);
                 session.OnConnected(args.RemoteEndPoint);
-
+                
             }else
             {
-                Console.WriteLine($"OnConnection Complete Failed : {args.SocketError}");
+                UnityEngine.Debug.LogError($"OnConnection Complete Failed : {args.SocketError}");
             }
         }
     }

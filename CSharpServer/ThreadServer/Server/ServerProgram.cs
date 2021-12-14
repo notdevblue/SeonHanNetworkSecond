@@ -15,6 +15,8 @@ namespace Server
     {
         static Listener _listener = new Listener();
 
+        public static GameRoom Room = new GameRoom();
+
         static void Main(string[] args)
         {
             PacketManager.Instance.Register();
@@ -27,7 +29,7 @@ namespace Server
             //엔드포인트는 최종적으로 ip 주소와 포트를 바인딩시켜서 만드는 도착점이다.
             IPEndPoint endPoint = new IPEndPoint(ipAddr, 54000);
 
-            _listener.Init(endPoint, () => { return new ClientSession(); });
+            _listener.Init(endPoint, () => SessionManager.Instance.Generate());
             while (true)
             {
                 ;
