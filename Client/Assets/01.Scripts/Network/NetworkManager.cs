@@ -21,6 +21,8 @@ public class NetworkManager : MonoBehaviour
         if(_instance != null)
             Debug.LogError("Multiple network manager is running");
         _instance = this;
+
+        Screen.SetResolution(640, 480, false);
     }
 
     public void Send(ArraySegment<byte> sendBuff)
@@ -53,7 +55,6 @@ public class NetworkManager : MonoBehaviour
             PacketManager.Instance.HandlePacket(_session, p);
         }
     }
-
 
     IEnumerator CoSendPacket()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerManager
 {
@@ -8,6 +9,8 @@ public class PlayerManager
     Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
     public static PlayerManager Instance { get; } = new PlayerManager();
+
+    CinemachineVirtualCamera vCam;
 
     public void Add(PlayerList listPacket)
     {
@@ -47,7 +50,7 @@ public class PlayerManager
 
             _players.Add(packet.playerId, player);
         }
-
+        
         _myPlayer.GetComponent<Renderer>().material.SetColor("_Color", new Color(packet.r, packet.g, packet.b));
 
     }

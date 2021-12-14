@@ -12,10 +12,13 @@ namespace Server
     {
         public int sessionId { get; set; }
         public GameRoom Room { get; set; }
+
+        private Random _rand = new Random();
         
         public float posX { get; set; }
         public float posY { get; set; }
         public float posZ { get; set; }
+
 
         public override void OnConnected(EndPoint endPoint)
         {
